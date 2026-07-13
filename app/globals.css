@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 20% 97%;
+    --foreground: 240 10% 8%;
+    --surface: 40 15% 100%;
+    --muted: 40 10% 92%;
+    --muted-foreground: 240 5% 40%;
+    --accent: 45 65% 45%;
+    --accent-foreground: 0 0% 100%;
+    --border: 240 10% 88%;
+    --input: 240 10% 88%;
+    --ring: 45 65% 45%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 8% 6%;
+    --foreground: 40 15% 94%;
+    --surface: 240 8% 9%;
+    --muted: 240 6% 14%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 45 65% 52%;
+    --accent-foreground: 240 10% 8%;
+    --border: 240 6% 18%;
+    --input: 240 6% 18%;
+    --ring: 45 65% 52%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  ::selection {
+    background: rgba(201, 162, 39, 0.35);
+  }
+
+  :focus-visible {
+    outline: 2px solid #c9a227;
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .hairline {
+    @apply border-b border-border/70;
+  }
+
+  .glass {
+    background: hsl(var(--surface) / 0.6);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+  }
+
+  .gold-text {
+    background: linear-gradient(120deg, #8a6f1b, #e4c55e 45%, #c9a227 65%, #8a6f1b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .sheen-btn {
+    position: relative;
+    overflow: hidden;
+  }
+  .sheen-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+    background-size: 200% 100%;
+    background-position: -200% 0;
+    transition: background-position 0.9s ease;
+    pointer-events: none;
+  }
+  .sheen-btn:hover::after {
+    background-position: 200% 0;
+  }
+
+  .container-px {
+    @apply px-5 sm:px-8 lg:px-12;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
